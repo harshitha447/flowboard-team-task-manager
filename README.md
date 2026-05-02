@@ -2,8 +2,6 @@
 
 FlowBoard is a full-stack SaaS-style team task manager built for assignment submission and easy deployment. It includes authentication, role-based access control, live MongoDB data, analytics, smart deadline views, seeded demo users, and a clean white-and-blue enterprise UI.
 
-Live URL: `https://your-flowboard-app-url`
-
 GitHub Repo: `https://github.com/harshitha447/flowboard-team-task-manager`
 
 ## Overview
@@ -143,18 +141,23 @@ flowboard/
 
 ## Screenshots
 
-Add final screenshots before submission:
+Real app screenshots are stored in `docs/screenshots`.
 
-- Login page
-- Dashboard
-- Projects
-- Tasks
-- Task details with AI assistant
-- Team workload
-- Analytics
-- Smart deadlines
-- Notifications
-- Ask AI chatbot
+| Login | Dashboard |
+| --- | --- |
+| ![Login page](docs/screenshots/login.png) | ![Dashboard](docs/screenshots/dashboard.png) |
+
+| Projects | Tasks |
+| --- | --- |
+| ![Projects page](docs/screenshots/projects.png) | ![Tasks page](docs/screenshots/tasks.png) |
+
+| Team | Analytics |
+| --- | --- |
+| ![Team management page](docs/screenshots/team.png) | ![Analytics page](docs/screenshots/analytics.png) |
+
+| Smart Deadlines | Notifications |
+| --- | --- |
+| ![Smart deadline page](docs/screenshots/deadlines.png) | ![Notifications page](docs/screenshots/notifications.png) |
 
 ## API Routes
 
@@ -395,9 +398,8 @@ Recommended final local smoke test:
 
 ## Submission Checklist
 
-- Replace the Live URL placeholder with the deployed frontend URL.
-- Replace the GitHub Repo placeholder with the real repository URL.
-- Add screenshots to the README or assignment submission.
+- Confirm the GitHub repo URL points to your submitted repository.
+- Confirm screenshots are visible in the README.
 - Run `npm test` in `server`.
 - Run `npm run typecheck`, `npm run lint`, and `npm run build` in `client`.
 - Test demo credentials after deployment.
