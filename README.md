@@ -271,7 +271,7 @@ GOOGLE_CLIENT_ID=
 ### Frontend `client/.env`
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=/api
 VITE_API_TIMEOUT=15000
 VITE_GOOGLE_CLIENT_ID=
 ```
@@ -360,41 +360,52 @@ Recommended final local smoke test:
 5. Logout and login as `member@flowboard.com` / `123456`.
 6. Verify members only see assigned tasks/projects and cannot access admin pages.
 
-## Railway Deployment
+## Netlify Deployment
 
-### Backend service
+FlowBoard can run as a single Netlify app. The React frontend is served from `client/dist`, and the Express API runs through a Netlify Function at `/api/*`.
 
-1. Create a Railway project.
-2. Add a new service from the `server` folder.
-3. Set the start command to `npm start`.
-4. Add backend environment variables:
-   - `MONGO_URI`
-   - `JWT_SECRET`
-   - `PORT`
-   - `CLIENT_URL`
-   - `GOOGLE_CLIENT_ID`
-   - optional JWT and signup settings from `server/.env.example`
-5. Deploy the service.
+### Deploy from GitHub
 
-### Frontend service
-
-1. Add another Railway service from the `client` folder.
-2. Set:
+1. Push this repository to GitHub.
+2. In Netlify, choose **Add new site** → **Import an existing project**.
+3. Select the GitHub repository.
+4. Keep the base directory as the repository root.
+5. Netlify will read the root `netlify.toml` automatically:
    - Build command: `npm run build`
-   - Start command: `npm run start`
-3. Add frontend environment variables:
-   - `VITE_API_URL=https://your-backend-url.up.railway.app/api`
-   - `VITE_API_TIMEOUT=15000`
-   - `VITE_GOOGLE_CLIENT_ID=your-google-web-client-id`
-4. Redeploy after setting the backend URL.
+   - Publish directory: `client/dist`
+   - Functions directory: `netlify/functions`
+
+### Netlify environment variables
+
+Add these in **Site configuration** → **Environment variables**:
+
+```env
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=replace-this-with-a-long-random-secret
+NODE_ENV=production
+VITE_GOOGLE_CLIENT_ID=your-google-web-client-id
+GOOGLE_CLIENT_ID=your-google-web-client-id
+ADMIN_EMAILS=admin@flowboard.com
+AUTO_SEED_DEMO_USERS=true
+```
+
+Optional:
+
+```env
+JWT_EXPIRES_IN=7d
+JWT_ISSUER=flowboard
+JWT_AUDIENCE=flowboard-client
+PUBLIC_SIGNUP_ENABLED=true
+REQUEST_BODY_LIMIT=10kb
+```
 
 ### Final deployment checklist
 
-1. Deploy backend first.
-2. Copy the backend public URL into the frontend `VITE_API_URL`.
-3. Copy the frontend public URL into backend `CLIENT_URL`.
-4. Seed production demo data only if your assignment requires it.
-5. Test admin and member login after deploy.
+1. Deploy from the repository root, not the `client` folder.
+2. Confirm Netlify build uses Node 22 from `netlify.toml`.
+3. Confirm `/api/auth/login` returns a JSON response.
+4. Test admin login with `admin@flowboard.com` / `123456`.
+5. If Google sign-in is enabled, add the Netlify site URL to Google Cloud **Authorized JavaScript origins**.
 
 ## Submission Checklist
 
@@ -402,6 +413,7 @@ Recommended final local smoke test:
 - Confirm screenshots are visible in the README.
 - Run `npm test` in `server`.
 - Run `npm run typecheck`, `npm run lint`, and `npm run build` in `client`.
+- For Netlify, deploy from the repository root so functions are included.
 - Test demo credentials after deployment.
 - Record a short 2-5 minute walkthrough using `DEMO_SCRIPT.md`.
 

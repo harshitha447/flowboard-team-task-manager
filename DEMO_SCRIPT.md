@@ -123,4 +123,4 @@ Point out:
 
 Say:
 
-“FlowBoard is ready to deploy on Railway. The backend has a proper start script, the frontend builds into `dist`, and the repo includes env examples, seed data, tests, linting, and a production build.”
+“FlowBoard is ready to deploy on Netlify as one full-stack app. The frontend builds into `client/dist`, the Express API runs through Netlify Functions at `/api`, and the repo includes env examples, seed data, tests, linting, and a production build.”

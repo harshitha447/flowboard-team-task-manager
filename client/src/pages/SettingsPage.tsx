@@ -12,7 +12,7 @@ export function SettingsPage() {
   const user = useAuthStore((state) => state.user);
   const clearSession = useAuthStore((state) => state.clearSession);
   const theme = useThemeStore((state) => state.theme);
-  const apiUrl = useMemo(() => import.meta.env.VITE_API_URL || "Not configured", []);
+  const apiUrl = useMemo(() => import.meta.env.VITE_API_URL || "/api", []);
 
   return (
     <div className="space-y-8">

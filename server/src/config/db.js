@@ -7,6 +7,10 @@ const connectDB = async () => {
     throw new Error("MONGO_URI is not configured.");
   }
 
+  if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
+    return mongoose.connection;
+  }
+
   mongoose.set("strictQuery", true);
   mongoose.set("sanitizeFilter", true);
   mongoose.set("bufferCommands", false);

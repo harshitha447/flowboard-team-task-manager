@@ -13,7 +13,7 @@ interface ApiErrorResponse {
   }>;
 }
 
-const apiBaseUrl = import.meta.env.VITE_API_URL?.trim() || "http://localhost:5000/api";
+const apiBaseUrl = import.meta.env.VITE_API_URL?.trim() || "/api";
 const apiTimeout = Number(import.meta.env.VITE_API_TIMEOUT || 15000);
 let hasShownAuthError = false;
 

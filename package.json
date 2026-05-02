@@ -1,0 +1,29 @@
+{
+  "name": "flowboard-netlify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Netlify full-stack deployment wrapper for FlowBoard.",
+  "scripts": {
+    "build": "npm --prefix client ci && npm --prefix client run build"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.1",
+    "express-async-errors": "^3.1.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.4.1",
+    "express-validator": "^7.3.2",
+    "google-auth-library": "^10.6.2",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.1",
+    "morgan": "^1.10.1",
+    "serverless-http": "^3.2.0"
+  }
+}
